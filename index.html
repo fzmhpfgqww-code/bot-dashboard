@@ -1,0 +1,42 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Bot-Dashboard</title><style>
+:root{--g:#39ff14;--b:#00f0ff;--p:#ff3df2;--o:#ff9f1c;--bg:#120c26;--fl:#1a1330;--ln:#2a1f4a;--tx:#d9d4ff;--mu:#8a80b8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:"JetBrains Mono",Consolas,monospace;height:100vh;display:grid;grid-template-rows:48px 1fr 92px;overflow:hidden}
+header{display:flex;align-items:center;gap:18px;padding:0 18px;border-bottom:1px solid var(--ln);background:#161033}
+h1{font-size:16px;margin:0;color:var(--g);text-shadow:0 0 8px var(--g);letter-spacing:2px}.st{font-size:12px;color:var(--mu)}.st b{color:var(--b)}
+main{display:grid;grid-template-columns:1fr 340px;min-height:0}
+#floor{position:relative;margin:14px;border:1px solid var(--ln);border-radius:8px;background:var(--fl);background-image:linear-gradient(var(--ln) 1px,transparent 1px),linear-gradient(90deg,var(--ln) 1px,transparent 1px);background-size:40px 40px;box-shadow:inset 0 0 40px #000}
+.desk{position:absolute;width:150px;height:105px;cursor:pointer;text-align:center}
+.desk .tb{position:absolute;bottom:0;left:15px;width:120px;height:34px;background:#241a45;border:1px solid var(--ln);border-radius:4px}
+.desk .mon{position:absolute;bottom:22px;left:57px;width:36px;height:16px;background:#0a0618;border:1px solid var(--c);box-shadow:0 0 6px var(--c)}
+.blob{position:absolute;top:8px;left:52px;width:46px;height:42px;border-radius:50% 50% 45% 45%;background:var(--c);box-shadow:0 0 14px var(--c);opacity:.55}
+.blob:before,.blob:after{content:"";position:absolute;top:14px;width:7px;height:9px;background:#120c26;border-radius:50%}.blob:before{left:12px}.blob:after{right:12px}
+.desk.aktiv .blob{opacity:1;animation:bob 1.2s infinite}@keyframes bob{50%{transform:translateY(-5px)}}
+.desk .nm{position:absolute;top:-10px;width:100%;font-size:11px;color:var(--c)}
+.desk .wt{position:absolute;top:4px;right:22px;color:var(--o);font-weight:bold;text-shadow:0 0 6px var(--o)}
+.desk.sel .tb{border-color:var(--c);box-shadow:0 0 10px var(--c)}
+aside{border-left:1px solid var(--ln);display:flex;flex-direction:column;min-height:0;background:#161033}
+aside h2{font-size:12px;color:var(--p);margin:12px 14px 6px;letter-spacing:2px}
+#det{padding:0 14px 10px;font-size:12px;border-bottom:1px solid var(--ln)}#det dt{color:var(--mu);margin-top:6px}#det dd{margin:2px 0 0}
+#log{overflow:auto;padding:0 14px;font-size:11px;flex:1}#log div{padding:4px 0;border-bottom:1px dashed var(--ln)}#log time{color:var(--b)}
+footer{display:flex;gap:8px;padding:10px;overflow-x:auto;border-top:1px solid var(--ln);background:#161033}
+.chip{min-width:96px;padding:8px;border:1px solid var(--ln);border-radius:6px;font-size:11px;cursor:pointer}.chip i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:5px;box-shadow:0 0 5px var(--c)}
+.chip small{display:block;color:var(--mu);margin-top:4px}.badge{padding:1px 6px;border-radius:3px;font-size:11px}.aktiv{color:var(--g)}.idle{color:var(--mu)}
+</style></head><body>
+<header><h1>▣ BOT-BÜRO</h1><span class="st">Bots: <b id="n">–</b></span><span class="st">aktiv: <b id="na">–</b></span><span class="st">offen für Damien: <b id="nw" style="color:var(--o)">–</b></span><span class="st" style="margin-left:auto">Stand: <b id="up">–</b> · Reload alle 30 s</span></header>
+<main><div id="floor"></div><aside><h2>// DETAILS</h2><div id="det"><dd style="color:var(--mu)">Bot anklicken …</dd></div><h2>// AKTIVITÄTSLOG</h2><div id="log"></div></aside></main>
+<footer id="bar"></footer>
+<script>
+const C=['#39ff14','#00f0ff','#ff3df2','#ff9f1c'];let D=[],sel=null;
+const fmt=s=>s?new Date(s).toLocaleString('de-DE',{timeZone:'Europe/Berlin',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Uhr':'unbekannt';
+const esc=s=>String(s??'—').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function show(id){sel=id;const b=D.find(x=>x.id===id);if(!b)return;document.querySelectorAll('.desk').forEach(e=>e.classList.toggle('sel',e.dataset.id===id));
+det.innerHTML=`<dt>Name</dt><dd style="color:${b.c}">${esc(b.name)}</dd><dt>Status</dt><dd class="${b.status}">${b.status==='aktiv'?'● aktiv':'○ idle'}</dd><dt>Aktuell</dt><dd>${esc(b.current)}</dd><dt>Zuletzt erledigt</dt><dd>${esc(b.lastDone)}</dd><dt>Zeitpunkt</dt><dd>${fmt(b.lastActivity)}</dd><dt>Offen für Damien</dt><dd style="color:var(--o)">${esc(b.waitingOnUser)}</dd>`}
+function render(j){D=j.bots.map((b,i)=>({...b,c:C[i%4],status:b.status==='aktiv'||b.status==='active'?'aktiv':'idle'}));
+const W=floor.clientWidth,cols=Math.max(1,Math.floor((W-20)/165));
+floor.innerHTML=D.map((b,i)=>`<div class="desk ${b.status}" data-id="${b.id}" style="--c:${b.c};left:${20+(i%cols)*165}px;top:${25+Math.floor(i/cols)*125}px" onclick="show('${b.id}')"><div class="nm">${esc(b.name)}</div><div class="blob"></div>${b.waitingOnUser?'<div class="wt">!</div>':''}<div class="mon"></div><div class="tb"></div></div>`).join('');
+bar.innerHTML=D.map(b=>`<div class="chip" style="--c:${b.c}" onclick="show('${b.id}')"><i></i>${esc(b.name)}<small class="${b.status}">${b.status}${b.waitingOnUser?' · <span style="color:var(--o)">offen</span>':''}</small></div>`).join('');
+log.innerHTML=[...D].sort((a,b)=>(b.lastActivity||'').localeCompare(a.lastActivity||'')).map(b=>`<div><time>${fmt(b.lastActivity)}</time> <span style="color:${b.c}">${esc(b.name)}</span>: ${esc(b.lastDone||b.current)}</div>`).join('');
+n.textContent=D.length;na.textContent=D.filter(b=>b.status==='aktiv').length;nw.textContent=D.filter(b=>b.waitingOnUser).length;up.textContent=fmt(j.updated);if(sel)show(sel)}
+async function load(){try{render(await (await fetch('data/status.json?t='+Date.now())).json())}catch(e){up.textContent='Fehler beim Laden'}}
+load();setInterval(load,30000);addEventListener('resize',load);
+</script></body></html>

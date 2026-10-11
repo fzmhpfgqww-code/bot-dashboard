@@ -1,0 +1,16 @@
+{"updated":"2026-10-11T03:47:00+02:00","bots":[
+{"id":"17a9d956-9684-4a2e-b738-17052770206d","name":"Arbeit","status":"idle","lastActivity":"2026-10-10T20:49:00+02:00","current":"Prüft täglich um 8:07 Uhr auf Antworten","lastDone":"9 Bewerbungen raus (zuletzt Bogie's, Auto Service MG)","waitingOnUser":null},
+{"id":"d7002c15-fe52-455e-96cc-7cb99cd65700","name":"Job","status":"idle","lastActivity":null,"current":null,"lastDone":"Ablauf des flaschenpost-Kennenlerntermins erklärt","waitingOnUser":null},
+{"id":"92ede8f7-9fdd-4a15-bd08-f97652525e83","name":"Sell","status":"idle","lastActivity":"2026-10-10T10:13:00+02:00","current":"Täglicher Scan um 9:26 Uhr","lastDone":"iPhone 14 Pro (Hamburg, 90 € VB) gemeldet – KAUFEN nach Rückfragen","waitingOnUser":null},
+{"id":"5f0f51db-af3b-4cdd-baf8-c84a8d5cc028","name":"Teile","status":"idle","lastActivity":"2026-10-07T10:28:00+02:00","current":"Wartet auf Reparaturanfragen von Sell","lastDone":null,"waitingOnUser":null},
+{"id":"f2c00518-778f-4e95-9e2d-62b1a447f82a","name":"Money Methode","status":"idle","lastActivity":"2026-10-09T08:26:00+02:00","current":null,"lastDone":"~50 Krefelder Betriebe mit fertigem Text vorbereitet, nichts verschickt","waitingOnUser":null},
+{"id":"d537d70b-fc48-452a-85bc-65fbf3c3969b","name":"Nexus","status":"idle","lastActivity":null,"current":null,"lastDone":"8 Discord-Funktionen live","waitingOnUser":"/reconfigure ausführen + neue Rollenrechte vergeben"},
+{"id":"d3de9a0a-dbd3-4110-bc48-09b272688376","name":"Schnitt","status":"idle","lastActivity":"2026-10-10T19:00:00+02:00","current":null,"lastDone":"3 Nexus-Werbevideos fertig, noch nicht gepostet","waitingOnUser":null},
+{"id":"3b3af90b-91dd-4e39-abe7-7f97af1e487b","name":"Tiktok","status":"idle","lastActivity":"2026-10-10T19:15:00+02:00","current":null,"lastDone":"Profil-Umstellung auf Nexus scheiterte im Browser","waitingOnUser":"Profil in der TikTok-App selbst umstellen"},
+{"id":"595689cf-d218-4117-8390-7389a81ac920","name":"Daily","status":"idle","lastActivity":"2026-10-10T14:53:00+02:00","current":null,"lastDone":"Wetterfrage beantwortet","waitingOnUser":null},
+{"id":"add0b5cc-dbdb-43cf-9fac-43ac724bf148","name":"Phasmopfobia","status":"idle","lastActivity":null,"current":null,"lastDone":"Gefragt, mit wem gespielt werden soll","waitingOnUser":"Sagen, mit wem du spielen willst"},
+{"id":"7959e8e8-ff00-4d8c-8259-d1870e320471","name":"HugoSMP","status":"idle","lastActivity":"2026-10-04T18:32:00+02:00","current":null,"lastDone":"Keine Aufgabe","waitingOnUser":null},
+{"id":"d06555e4-923d-43f0-bd1f-02df33cba3f2","name":"Tiktok Trends","status":"idle","lastActivity":"2026-10-04T17:51:00+02:00","current":null,"lastDone":"Keine Aufgabe","waitingOnUser":null},
+{"id":"3835b060-3e96-4755-b70b-0ca33aab0d8f","name":"Resell","status":"idle","lastActivity":null,"current":null,"lastDone":"Noch nie aktiv","waitingOnUser":null},
+{"id":"d648c56a-76d1-4c89-8188-3d4bb400df1e","name":"My Boy","status":"idle","lastActivity":"2026-10-11T03:40:00+02:00","current":null,"lastDone":"Bot-Dashboard angelegt","waitingOnUser":null}
+]}
